@@ -1,13 +1,16 @@
 import React from 'react';
 import Post from './Post/Post'
+import useStyles from './styles';
+
 
 
 const Post = () => {
+
+  const classes = useStyles();
+
   return (
     <>
-      <h1>Posts</h1>
-      <Post />
-      <Post />
+      <h1>Post</h1>
     </>
   )
 }
