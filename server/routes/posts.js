@@ -9,6 +9,4 @@ router.get('/', createPost);
   
 
 
-
-
 export default router;
