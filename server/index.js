@@ -1,17 +1,15 @@
-import * as dotenv from "dotenv";
-dotenv.config();
 // modern node import syntax 
 //we need add "type": "module" in package.json
 import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
-
 import postRoutes from './routes/posts.js';
+import * as dotenv from "dotenv";
+dotenv.config();
 
 //initializing app
 const app = express();
-
 
 //setup bodyparser to set request propperly 
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
@@ -29,5 +27,5 @@ mongoose.connect(process.env.CONNECTION_URL).then(() =>
   })
 );
 
-mongoose.set('strictQuery', false)
+mongoose.set('strictQuery', false);
 
