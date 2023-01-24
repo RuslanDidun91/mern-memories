@@ -25,6 +25,17 @@ const Form = ({ currentId, setCurrentId }) => {
     if (post) setPostData(post);
   }, [post])
 
+  const clear = () => {
+    setCurrentId(null);
+    setPostData({
+      creator: '',
+      title: '',
+      message: '',
+      tags: '',
+      selectedFile: '',
+    })
+  }
+
   const handleSubmit = (e) => {
     //to prevent refreshing the browser
     e.preventDefault();
@@ -36,16 +47,6 @@ const Form = ({ currentId, setCurrentId }) => {
     clear();
   }
 
-  const clear = () => {
-    setCurrentId(null);
-    setPostData({
-      creator: '',
-      title: '',
-      message: '',
-      tags: '',
-      selectedFile: '',
-    })
-  }
 
   return (
     <Paper className={classes.paper}>
