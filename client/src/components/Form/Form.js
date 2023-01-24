@@ -89,7 +89,7 @@ const Form = ({ currentId, setCurrentId }) => {
           fullWidth
           value={postData.tags}
           //...postData to not override other text field
-          onChange={(e) => setPostData({ ...postData, tags: e.target.value })} />
+          onChange={(e) => setPostData({ ...postData, tags: e.target.value.split(',') })} />
 
         <div className={classes.fileInput}>
           {/* file upload */}
