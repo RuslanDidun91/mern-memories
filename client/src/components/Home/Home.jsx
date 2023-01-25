@@ -1,11 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import Posts from '../Posts/Posts';
 import Form from '../Form/Form';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Container, Grow, Grid } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { getPosts } from '../../actions/posts'
-import useStyles from './styles';
+import useStyles from '../../styles';
 
 
 
@@ -19,7 +18,7 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getPosts());
-  }, [currentId, dispatch])
+  }, [currentId, dispatch]);
 
   return (
     // animation
