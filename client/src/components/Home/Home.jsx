@@ -7,7 +7,6 @@ import { getPosts } from '../../actions/posts'
 import useStyles from '../../styles';
 
 
-
 const Home = () => {
 
   //tracking posts id
