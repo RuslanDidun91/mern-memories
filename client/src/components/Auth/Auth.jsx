@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Avatar, Button, Paper, Grid, Typography, Container } from '@material-ui/core';
 import useStyles from './styles';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Input from "./input";
+import Input from "./Input";
 import { AUTH } from '../../constants/actionTypes';
 import { GoogleLogin, googleLogout } from '@react-oauth/google';
 import { useDispatch } from "react-redux";
@@ -42,7 +42,7 @@ setFormData({...formData, [e.target.name]: e.target.value})
 
   const switchMode = () => {
     setIsSignUp((signUp) => !signUp);
-    handleShowPassword(false);
+    setShowPassword(false);
   }
 
   const googleSuccess = async (res) => {
@@ -78,7 +78,7 @@ setFormData({...formData, [e.target.name]: e.target.value})
                   handleChange={handleChange} autoFocus half />
 
                 <Input
-                  name='firstName' label='First Name'
+                  name='lastName' label='Last Name'
                   handleChange={handleChange} half />
               </>)}
             <Input
