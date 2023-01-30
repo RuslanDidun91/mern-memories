@@ -5,6 +5,8 @@ import memories from '../../images/memories.png';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+// import jwt_decode from "jwt-decode";
+
 
 
 
@@ -20,6 +22,11 @@ const NavBar = () => {
 
   useEffect(() => {
     const token = user?.token
+    // if (token) {
+    //   const decodedToken = jwt_decode(token);
+
+    //   if (decodedToken.exp * 1000 < new Date().getTime()) handleLogout();
+    // }
     setUser(JSON.parse(localStorage.getItem('profile')));
   }, [location]);
 

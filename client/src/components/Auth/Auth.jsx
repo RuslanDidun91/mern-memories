@@ -4,7 +4,7 @@ import useStyles from './styles';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Input from "./Input";
 import { AUTH } from '../../constants/actionTypes';
-import { GoogleLogin, googleLogout } from '@react-oauth/google';
+import { GoogleLogin } from '@react-oauth/google';
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {signIn, signUp} from '../../actions/auth';
