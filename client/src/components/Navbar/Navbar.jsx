@@ -5,9 +5,7 @@ import memories from '../../images/memories.png';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-// import jwt_decode from "jwt-decode";
-
-
+import jwt_decode from "jwt-decode";
 
 
 const NavBar = () => {
@@ -18,23 +16,22 @@ const NavBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  console.log(user);
-
-  useEffect(() => {
-    const token = user?.token
-    // if (token) {
-    //   const decodedToken = jwt_decode(token);
-
-    //   if (decodedToken.exp * 1000 < new Date().getTime()) handleLogout();
-    // }
-    setUser(JSON.parse(localStorage.getItem('profile')));
-  }, [location]);
-
   const logout = () => {
-    dispatch({type:'LOGOUT'});
+    dispatch({ type: 'LOGOUT' });
     navigate('/');
     setUser(null);
   }
+
+  useEffect(() => {
+    const token = user?.token
+    if (token) {
+      const decodedToken = jwt_decode(token);
+      if (decodedToken.exp * 1000 < new Date().getTime());
+      logout();
+    }
+    setUser(JSON.parse(localStorage.getItem('profile')));
+  }, [location]);
+
 
   return (
     <div>
@@ -53,7 +50,7 @@ const NavBar = () => {
               <Avatar className={classes.purple}
                 alt={user?.result.name}
                 src={user?.result.picture}
-                >
+              >
                 {user?.result.name.charAt(0)}</Avatar>
               <Typography className={classes.userName} variant='h6'>{user.result.name}</Typography>
               <Button variant='contained'

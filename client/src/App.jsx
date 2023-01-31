@@ -14,11 +14,13 @@ const App = () => {
 
   return (
     <Router>
-      <Container maxWidth='lg'>
+      <Container maxWidth='xl'>
         <Navbar />
         <Routes>
+          <Route index element={<Navigate to="/posts" />} />
           <Route path='/' exact element={<Home />} />
           <Route path='/auth' exact element={<Auth />} />
+          <Route path=":id" exact element={<PostDetails />} />
         </Routes>
       </Container>
     </Router>
