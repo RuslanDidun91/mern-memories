@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Posts from '../Posts/Posts';
 import Form from '../Form/Form';
-import { Container, Grow, Grid, Paper, TextField, Button } from '@material-ui/core';
+import { Container, Grow, Grid, Paper, TextField, Button, AppBar } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { getPosts, getPostsBySearch } from '../../actions/posts'
 import { useNavigate, useLocation } from 'react-router-dom';
 import ChipInput from 'material-ui-chip-input';
-import useStyles from '../../styles';
 import Pagination from '../Pagination';
 import useStyles from './styles';
 
@@ -32,7 +31,6 @@ const Home = () => {
   const navigate = useNavigate();
   const page = query.get('page') || 1;
   const searchQuery = query.get('search') || '';
-  const classes2 = useStyles();
 
   useEffect(() => {
     dispatch(getPosts());

@@ -7,7 +7,9 @@ import { AUTH } from '../../constants/actionTypes';
 import { GoogleLogin } from '@react-oauth/google';
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {signIn, signUp} from '../../actions/auth';
+import { signIn, signUp } from '../../actions/auth';
+import jwt_decode from "jwt-decode";
+
 
 
 const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' }
@@ -25,16 +27,15 @@ const Auth = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(isSignup) {
+    if (isSignup) {
       dispatch(signUp(formData, navigate));
     } else {
       dispatch(signIn(formData, navigate));
-
     }
   }
 
   const handleChange = (e) => {
-setFormData({...formData, [e.target.name]: e.target.value})
+    setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
   const handleShowPassword = () =>
@@ -45,9 +46,22 @@ setFormData({...formData, [e.target.name]: e.target.value})
     setShowPassword(false);
   }
 
+  //first 
+  // const googleSuccess = async (res) => {
+  //   const result = res?.profileObj;
+  //   const token = res?.tokenId;
+  //   try {
+  //     dispatch({ type: AUTH, data: { result, token } });
+  //     navigate('/');
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
+
   const googleSuccess = async (res) => {
-    const result = res?.profileObj;
-    const token = res?.tokenId;
+    const token = res?.credential;
+    const result = jwt_decode(token);
+
     try {
       dispatch({ type: AUTH, data: { result, token } });
       navigate('/');
@@ -55,6 +69,7 @@ setFormData({...formData, [e.target.name]: e.target.value})
       console.log(error);
     }
   }
+
 
 
   const googleError = (err) => {
