@@ -1,22 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Posts from '../Posts/Posts';
 import Form from '../Form/Form';
 import { Container, Grow, Grid, Paper, TextField, Button, AppBar } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
-import { getPosts, getPostsBySearch } from '../../actions/posts'
+import { getPostsBySearch } from '../../actions/posts';
 import { useNavigate, useLocation } from 'react-router-dom';
 import ChipInput from 'material-ui-chip-input';
 import Pagination from '../Pagination';
 import useStyles from './styles';
 
-
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
-
 const Home = () => {
-
   //tracking posts id
   const [currentId, setCurrentId] = useState(null);
   //traacking search value
@@ -24,17 +21,12 @@ const Home = () => {
   //tracking tags value
   const [tags, setTags] = useState([]);
 
-
   const classes = useStyles();
   const dispatch = useDispatch();
   const query = useQuery();
   const navigate = useNavigate();
   const page = query.get('page') || 1;
   const searchQuery = query.get('search') || '';
-
-  useEffect(() => {
-    dispatch(getPosts());
-  }, [currentId, dispatch]);
 
   const searchPosts = () => {
     if (search.trim() || tags) {
@@ -47,7 +39,6 @@ const Home = () => {
 
   const handleKeyPress = (e) => {
     if (e.keyCode === 'Enter') {
-      // event.preventDefault();
       searchPosts();
     }
   }
@@ -82,7 +73,7 @@ const Home = () => {
             </AppBar>
             <Form currentId={currentId} setCurrentId={setCurrentId} />
             {(!searchQuery && !tags.length) && (
-              <Paper className={classes.pagination} elevation={6}>
+              <Paper className={classes.pagination} elevation={5}>
                 <Pagination page={page} />
               </Paper>
             )}
