@@ -9,7 +9,7 @@ const Form = ({ currentId, setCurrentId }) => {
 
   const [postData, setPostData] = useState({
     title: '', message: '',
-    tags: '', selectedFile: ''
+    tags: [], selectedFile: ''
   })
 
   const post = useSelector((state) => currentId ? state.posts.find((p) => p._id === currentId) : null);
@@ -27,7 +27,7 @@ const Form = ({ currentId, setCurrentId }) => {
     setCurrentId(null);
     setPostData({
       title: '', message: '',
-      tags: '', selectedFile: '',
+      tags: [], selectedFile: '',
     })
   }
 
@@ -35,12 +35,12 @@ const Form = ({ currentId, setCurrentId }) => {
     //to prevent refreshing the browser
     e.preventDefault();
     if (currentId === 0) {
-      // dispatch(updatePost(currentId, { ...postData, name: user?.result?.name }));
-      dispatch(createPost({ ...postData, name: user?.result?.name }));
+      dispatch(updatePost(currentId, { ...postData, name: user?.result?.name }));
+      // dispatch(createPost({ ...postData, name: user?.result?.name }));
       clear();
     } else {
-      // dispatch(createPost({ ...postData, name: user?.result?.name }));
-      dispatch(updatePost(currentId, {...postData, name: user?.result?.name}));
+      dispatch(createPost({ ...postData, name: user?.result?.name }));
+      // dispatch(updatePost(currentId, {...postData, name: user?.result?.name}));
       clear();
     }
   }
