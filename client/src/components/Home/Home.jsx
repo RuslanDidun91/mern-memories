@@ -3,7 +3,7 @@ import Posts from '../Posts/Posts';
 import Form from '../Form/Form';
 import { Container, Grow, Grid, Paper, TextField, Button } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
-import { getPosts } from '../../actions/posts'
+import { getPosts, getPostsBySearch } from '../../actions/posts'
 import { useNavigate, useLocation } from 'react-router-dom';
 import ChipInput from 'material-ui-chip-input';
 import useStyles from '../../styles';
@@ -41,7 +41,7 @@ const Home = () => {
   const searchPosts = () => {
     if (search.trim() || tags) {
       dispatch(getPostsBySearch({ search, tags: tags.join(',') }));
-      history.push(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
+      navigate(`/posts/search?searchQuery=${search || "none"}&tags=${tags.join(",")}`);
     } else {
       navigate('/');
     }
