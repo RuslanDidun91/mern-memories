@@ -79,7 +79,7 @@ const Auth = () => {
   return (
     <Container component='main' maxWidth='xs'>
       {/* div with elevation effect */}
-      <Paper className={classes.paper} elevation={3}>
+      <Paper className={classes.paper} elevation={4}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
