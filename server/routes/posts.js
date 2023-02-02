@@ -5,14 +5,14 @@ import {
   updatePost,
   deletePost,
   likePost,
-  getpostsBySearch
+  getPostsBySearch
 } from '../controllers/posts.js';
 import isAuth from '../middleware/isAuth.js';
 
 const router = express.Router();
 
 router.get('/', getPost);
-router.get('/search', getpostsBySearch);
+router.get('/search', getPostsBySearch);
 router.post('/', isAuth, createPost);
 router.patch('/:id', isAuth, updatePost);
 router.delete('/:id', isAuth, deletePost);

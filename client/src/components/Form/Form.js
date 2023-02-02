@@ -31,15 +31,16 @@ const Form = ({ currentId, setCurrentId }) => {
     })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     //to prevent refreshing the browser
     e.preventDefault();
     if (currentId === 0) {
-      dispatch(updatePost(currentId, {...postData, name: user?.result?.name}));
-
-    } else {
+      // dispatch(updatePost(currentId, { ...postData, name: user?.result?.name }));
       dispatch(createPost({ ...postData, name: user?.result?.name }));
-
+      clear();
+    } else {
+      // dispatch(createPost({ ...postData, name: user?.result?.name }));
+      dispatch(updatePost(currentId, {...postData, name: user?.result?.name}));
       clear();
     }
   }
