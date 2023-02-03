@@ -1,5 +1,6 @@
 import express from 'express';
 import {
+  getPosts,
   getPost,
   createPost,
   updatePost,
@@ -11,7 +12,8 @@ import isAuth from '../middleware/isAuth.js';
 
 const router = express.Router();
 
-router.get('/', getPost);
+router.get('/', getPosts);
+router.get('/:id', getPost);
 router.get('/search', getPostsBySearch);
 router.post('/', isAuth, createPost);
 router.patch('/:id', isAuth, updatePost);
