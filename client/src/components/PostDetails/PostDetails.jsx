@@ -5,6 +5,7 @@ import moment from "moment";
 import { useParams, useNavigate } from "react-router-dom";
 import useStyles from "./styles";
 import { getPost, getPostsBySearch } from "../../actions/posts";
+import CommentSection from "./CommentSection";
 
 const PostDetils = () => {
 
@@ -21,16 +22,16 @@ const PostDetils = () => {
 
   //recommended posts
   useEffect(() => {
-    if (post) {
+    if (post && post?.id===id) {
       dispatch(getPostsBySearch({ search: 'none', tags: post?.tags.join(',') }));
     }
-  }, [post])
+  }, [post, id])
 
-  const recommendedPosts = posts.filter(({ _id }) => _id !== post._id);
 
 
   if (!post) return null;
 
+  const openPost = (_id) => navigate(`/posts/${_id}`);
   if (isLoading) {
     return (
       <Paper elevation={6} className={classes.loadingPaper}>
@@ -39,7 +40,7 @@ const PostDetils = () => {
     );
   }
 
-  const openPost = (_id) => navigate(`/posts/${_id}`);
+  const recommendedPosts = posts.filter(({ _id }) => _id !== post._id);
 
   return (
     <Paper style={{ padding: '20px', borderRadius: '15px' }} elevation={6}>
@@ -53,7 +54,7 @@ const PostDetils = () => {
           <Divider style={{ margin: '20px 0' }} />
           <Typography variant="body1"><strong>Realtime Chat - coming soon!</strong></Typography>
           <Divider style={{ margin: '20px 0' }} />
-          <Typography variant="body1"><strong>Comments - coming soon!</strong></Typography>
+          <CommentSection post={post} />
           <Divider style={{ margin: '20px 0' }} />
         </div>
         <div className={classes.imageSection}>
@@ -67,7 +68,7 @@ const PostDetils = () => {
           <div className={classes.recommendedPosts}>
             {recommendedPosts.map(({ title, name, message, likes, selectedFile, _id }) => (
               <div style={{ margin: '20px', cursor: 'pointer' }} onClick={() => openPost(_id)} key={_id}>
-                <Typography gutterBottom variant="h6">{title}</Typography>
+                <Typography gutterBottom variant="h5">{title}</Typography>
                 <Typography gutterBottom variant="subtitle2">{name}</Typography>
                 <Typography gutterBottom variant="subtitle2">{message}</Typography>
                 <Typography gutterBottom variant="subtitle1">Likes: {likes.length}</Typography>
