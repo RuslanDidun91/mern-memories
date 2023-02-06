@@ -71,13 +71,14 @@ const Post = ({ post, setCurrentId }) => {
           <Typography variant='body2'>{moment(post.createdAt).fromNow()}</Typography>
         </div>
         {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (
-          <div className={classes.overlay2}>
-            <Button style={{ color: 'white' }}
-              size='small'
-              onClick={() => setCurrentId(post._id)}>
-              <MoreHorizIcon fontSize='medium' />
-            </Button>
-          </div>
+          <div className={classes.overlay2} name="edit">
+          <Button
+            onClick={(e) => {e.stopPropagation();setCurrentId(post._id);}}
+            style={{ color: 'white' }}
+            size="small">
+            <MoreHorizIcon fontSize="medium" />
+          </Button>
+        </div>
         )}
         <div className={classes.details}>
           <Typography variant='body2' color='textSecondary'>
@@ -88,9 +89,7 @@ const Post = ({ post, setCurrentId }) => {
         <CardContent>
           <Typography variant='body2' color='textSecondary' component='p'>{post.message}</Typography>
         </CardContent>
-
       </ButtonBase>
-
       <CardActions className={classes.cardActions}>
         <Button size='small' color='primary' disabled={!user?.result} onClick={handleLike}>
           <Likes />

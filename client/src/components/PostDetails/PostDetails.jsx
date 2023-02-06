@@ -22,7 +22,7 @@ const PostDetils = () => {
 
   //recommended posts
   useEffect(() => {
-    if (post && post?.id===id) {
+    if (post && post?.id === id) {
       dispatch(getPostsBySearch({ search: 'none', tags: post?.tags.join(',') }));
     }
   }, [post, dispatch, id])
@@ -72,14 +72,14 @@ const PostDetils = () => {
                 <Typography gutterBottom variant="subtitle2">{name}</Typography>
                 <Typography gutterBottom variant="subtitle2">{message}</Typography>
                 <Typography gutterBottom variant="subtitle1">Likes: {likes.length}</Typography>
-                <img src={selectedFile} width="200px" alt='smallImage'/>
+                <img src={selectedFile} width="200px" alt='smallImage' />
               </div>
             ))}
           </div>
         </div>
       )}
     </Paper>
-  )
-}
+  );
+};
 
 export default PostDetils;
