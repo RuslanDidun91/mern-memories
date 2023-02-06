@@ -6,7 +6,8 @@ import {
   updatePost,
   deletePost,
   likePost,
-  getPostsBySearch
+  getPostsBySearch,
+  commentPost
 } from '../controllers/posts.js';
 import isAuth from '../middleware/isAuth.js';
 
@@ -19,6 +20,7 @@ router.post('/', isAuth, createPost);
 router.patch('/:id', isAuth, updatePost);
 router.delete('/:id', isAuth, deletePost);
 router.patch('/:id/likePost', isAuth, likePost);
+router.post('/:id/commentPost', isAuth, commentPost);
 
 
 
