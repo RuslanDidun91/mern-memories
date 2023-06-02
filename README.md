@@ -36,7 +36,7 @@ Follow this [link 👈]() to share your memories with other users
 - [x] Created and set up project, installed all packages and libraries.
 - [x] Initialized server and client sides, created HomePage, connected Redux.
 - [x] Added components, pages, search bar, routes, controllers, RESTful APIs. 
-- [x] Implemented Create, Update, Delete functionality, Added login, Google OAuth.
+- [x] Implemented Create, Update, Delete functionality, Added login, OAuth.
 - [x] Created fully responsive, mobile, user-friendly UI ussing React_JS and MUI. 
 - [ ] implement "My Profile" page and geo location navigation button. 
 
